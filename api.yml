@@ -1,0 +1,5 @@
+Data:
+  - method: get
+    get: /
+  - method: getByMakerModelYear
+    get: /:maker/:model/:year
