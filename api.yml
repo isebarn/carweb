@@ -3,3 +3,5 @@ Data:
     get: /
   - method: getByMakerModelYear
     get: /:maker/:model/:year
+  - method: logs
+    get: /GetLogs
