@@ -40,6 +40,11 @@ export default {
           icon: 'mdi-apps',
           title: 'Overview',
           to: '/'
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'Logs',
+          to: 'logs'
         }
       ],
       title: 'Title'
