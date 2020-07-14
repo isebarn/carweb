@@ -41,7 +41,6 @@ export default {
         x: 0,
         y: 0
       },
-
       headers: [
         {
           text: 'Maker',
@@ -75,6 +74,9 @@ export default {
         chartArea: {
           backgroundColor: 'red'
         },
+        onClick: (element, dataAtClick) => {
+          this.OpenAd(element, dataAtClick)
+        },
         legend: { display: false },
         title: { display: true, text: '' },
         responsive: true,
@@ -97,6 +99,12 @@ export default {
 
   methods: {
 
+    OpenAd (element, dataAtClick) {
+      const idx = dataAtClick[0]._index
+      const data = this.barChartData.datasets[0].data[idx].data
+      window.open('https://bland.is/classified/entry.aspx?classifiedId=' + data.Id, '_blank')
+    },
+
     onResize () {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight }
     },
@@ -104,12 +112,10 @@ export default {
     async allItemsRowClick (event) {
       this.showChart = false
       this.barChartData.datasets[0].data = []
-      let { data } = await this.$api.Data.getByMakerModelYear(event.Maker, event.Model, event.Year)
-      data = data.filter(x => x.Price !== 0)
-      data = data.filter(x => x.Price > 20000)
+      const { data } = await this.$api.Data.getByMakerModelYear(event.Maker, event.Model, event.Year)
 
       const result = []
-      data.forEach(car => result.push({ y: car.Price / 1000, x: car.Driven / 1000 }))
+      data.forEach(car => result.push({ y: car.Price / 1000, x: car.Driven / 1000, data: car }))
 
       let yMin = Math.min.apply(Math, result.map(function (o) { return o.y }))
       let yMax = Math.max.apply(Math, result.map(function (o) { return o.y }))
