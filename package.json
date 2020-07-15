@@ -15,6 +15,7 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "chart.js": "^2.9.3",
+    "mathjs": "^7.1.0",
     "nuxt": "^2.0.0",
     "vue-chartjs": "^3.5.0",
     "vuex-map-fields": "^1.4.0",
