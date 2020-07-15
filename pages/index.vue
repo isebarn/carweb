@@ -116,6 +116,7 @@ export default {
 
       const result = []
       data.forEach(car => result.push({ y: car.Price / 1000, x: car.Driven / 1000, data: car }))
+      this.barChartData.datasets[0].pointBackgroundColor = data.map(x => x.Sold ? 'red' : 'green')
 
       let yMin = Math.min.apply(Math, result.map(function (o) { return o.y }))
       let yMax = Math.max.apply(Math, result.map(function (o) { return o.y }))
